@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Cafe - Authentic Italian Cuisine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for animations and effects */
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #eab308;
+            transition: width .3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-utensils text-yellow-500 text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-gray-800">Bella Cafe</span>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="nav-link text-gray-800 hover:text-yellow-500 font-medium" onclick="showPage('home')">Home</a>
+                    <a href="#" class="nav-link text-gray-800 hover:text-yellow-500 font-medium" onclick="showPage('menu')">Menu</a>
+                    <a href="#" class="nav-link text-gray-800 hover:text-yellow-500 font-medium">About</a>
+                    <a href="#" class="nav-link text-gray-800 hover:text-yellow-500 font-medium">Contact</a>
+                    <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full font-medium transition duration-300">Reservations</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4">
+            <a href="#" class="block py-2 text-gray-800 hover:text-yellow-500 font-medium" onclick="showPage('home')">Home</a>
+            <a href="#" class="block py-2 text-gray-800 hover:text-yellow-500 font-medium" onclick="showPage('menu')">Menu</a>
+            <a href="#" class="block py-2 text-gray-800 hover:text-yellow-500 font-medium">About</a>
+            <a href="#" class="block py-2 text-gray-800 hover:text-yellow-500 font-medium">Contact</a>
+            <a href="#" class="block bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full font-medium text-center mt-2 transition duration-300">Reservations</a>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page">
+        <!-- Hero Section -->
+        <section class="hero-image flex items-center justify-center text-center text-white">
+            <div class="px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in">Welcome to Bella Cafe</h1>
+                <p class="text-xl md:text-2xl mb-8 fade-in">Authentic Italian Cuisine with a Modern Twist</p>
+                <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-full text-lg font-medium transition duration-300 inline-block" onclick="showPage('menu')">View Our Menu</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Bella Cafe Interior" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Story</h2>
+                        <p class="text-gray-600 mb-4">Founded in 2005, Bella Cafe brings the authentic flavors of Italy to your table. Our chef, Giovanni Rossi, combines traditional recipes with modern techniques to create unforgettable dining experiences.</p>
+                        <p class="text-gray-600 mb-6">We source only the freshest ingredients, many imported directly from Italy, to ensure every dish meets our high standards of quality and authenticity.</p>
+                        <a href="#" class="text-yellow-500 font-medium hover:text-yellow-600">Learn more about us →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specials Section -->
+        <section class="py-16 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Today's Specials</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Special 1 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Truffle Pasta" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Truffle Tagliatelle</h3>
+                            <p class="text-gray-600 mb-4">Handmade tagliatelle with black truffle, parmesan, and a touch of cream.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-yellow-500 font-bold text-lg">$24.99</span>
+                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Special 2 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1371&q=80" alt="Margherita Pizza" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Wood-fired Margherita</h3>
+                            <p class="text-gray-600 mb-4">Classic pizza with San Marzano tomatoes, fresh mozzarella, and basil.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-yellow-500 font-bold text-lg">$18.99</span>
+                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Special 3 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Tiramisu" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Homemade Tiramisu</h3>
+                            <p class="text-gray-600 mb-4">Traditional Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-yellow-500 font-bold text-lg">$9.99</span>
+                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-medium transition duration-300">Order Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">What Our Guests Say</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-500 text-2xl mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"The pasta at Bella Cafe is simply divine! I've been to Italy many times, and this is as authentic as it gets outside of Rome."</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Sarah J.</h4>
+                                <p class="text-gray-500 text-sm">Regular Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-500 text-2xl mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"The ambiance is perfect for a romantic dinner. The wine selection is excellent, and the service is impeccable."</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Michael T." class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Michael T.</h4>
+                                <p class="text-gray-500 text-sm">Food Critic</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-500 text-2xl mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"I come here every weekend for their brunch. The eggs benedict with smoked salmon is my absolute favorite!"</p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily R." class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Emily R.</h4>
+                                <p class="text-gray-500 text-sm">Local Resident</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservation CTA -->
+        <section class="py-16 bg-yellow-500 text-white">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4">Ready to Experience Bella Cafe?</h2>
+                <p class="text-xl mb-8">Book your table today and enjoy an unforgettable dining experience</p>
+                <a href="#" class="bg-white text-yellow-500 hover:bg-gray-100 px-6 py-3 rounded-full text-lg font-medium transition duration-300 inline-block">Make a Reservation</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menu-page" class="page hidden">
+        <!-- Menu Hero -->
+        <section class="bg-gray-800 text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Our Menu</h1>
+                <p class="text-xl md:text-2xl">Discover our authentic Italian dishes made with love and tradition</p>
+            </div>
+        </section>
+
+        <!-- Menu Navigation -->
+        <div class="bg-white shadow-md sticky top-16 z-40">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex overflow-x-auto py-4 space-x-6">
+                    <button class="menu-category-btn whitespace-nowrap px-4 py-2 rounded-full bg-yellow-500 text-white font-medium" data-category="all">All Items</button>
+                    <button class="menu-category-btn whitespace-nowrap px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium" data-category="starters">Starters</button>
+                    <button class="menu-category-btn whitespace-nowrap px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium" data-category="pasta">Pasta</button>
+                    <button class="menu-category-btn whitespace-nowrap px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium" data-category="pizza">Pizza</button>
+                    <button class="menu-category-btn whitespace-nowrap px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium" data-category="mains">Main Courses</button>
+                    <button class="menu-category-btn whitespace-nowrap px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium" data-category="desserts">Desserts</button>
+                    <button class="menu-category-btn whitespace-nowrap px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium" data-category="drinks">Drinks</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Content -->
+        <section class="py-12 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <!-- Starters -->
+                <div class="menu-section" id="starters-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+                        <i class="fas fa-utensils text-yellow-500 mr-3"></i>
+                        Starters & Antipasti
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Item 1 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="starters">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Bruschetta Classica</h3>
+                                    <p class="text-gray-600 mb-3">Toasted bread topped with tomatoes, garlic, fresh basil, and olive oil</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$8.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf text-green-500 mr-1"></i> Vegetarian
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="starters">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Calamari Fritti</h3>
+                                    <p class="text-gray-600 mb-3">Crispy fried squid served with lemon aioli and marinara sauce</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$12.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="starters">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Caprese Salad</h3>
+                                    <p class="text-gray-600 mb-3">Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$10.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf text-green-500 mr-1"></i> Vegetarian
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="starters">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Prosciutto e Melone</h3>
+                                    <p class="text-gray-600 mb-3">Thinly sliced cured ham served with fresh cantaloupe</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$11.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pasta -->
+                <div class="menu-section mt-16" id="pasta-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+                        <i class="fas fa-pasta text-yellow-500 mr-3"></i>
+                        Pasta & Risotto
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Item 1 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pasta">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Spaghetti Carbonara</h3>
+                                    <p class="text-gray-600 mb-3">Classic Roman pasta with eggs, cheese, pancetta, and black pepper</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$16.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pasta">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Penne all'Arrabbiata</h3>
+                                    <p class="text-gray-600 mb-3">Penne pasta in a spicy tomato sauce with garlic and chili</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$14.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf text-green-500 mr-1"></i> Vegetarian
+                                <span class="mx-2">•</span>
+                                <i class="fas fa-pepper-hot text-red-500 mr-1"></i> Spicy
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pasta">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Fettuccine Alfredo</h3>
+                                    <p class="text-gray-600 mb-3">Homemade fettuccine with creamy parmesan sauce</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$15.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf text-green-500 mr-1"></i> Vegetarian
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pasta">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Risotto ai Funghi</h3>
+                                    <p class="text-gray-600 mb-3">Creamy Arborio rice with wild mushrooms and white wine</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$17.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf text-green-500 mr-1"></i> Vegetarian
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pizza -->
+                <div class="menu-section mt-16" id="pizza-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+                        <i class="fas fa-pizza-slice text-yellow-500 mr-3"></i>
+                        Wood-fired Pizzas
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Item 1 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pizza">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Margherita</h3>
+                                    <p class="text-gray-600 mb-3">Tomato sauce, mozzarella, fresh basil, and olive oil</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$14.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf text-green-500 mr-1"></i> Vegetarian
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pizza">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Quattro Formaggi</h3>
+                                    <p class="text-gray-600 mb-3">Four cheese blend: mozzarella, gorgonzola, parmesan, and fontina</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$16.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-leaf text-green-500 mr-1"></i> Vegetarian
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pizza">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Diavola</h3>
+                                    <p class="text-gray-600 mb-3">Spicy salami, tomato sauce, mozzarella, and chili flakes</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$17.99</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-pepper-hot text-red-500 mr-1"></i> Spicy
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="pizza">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Prosciutto e Rucola</h3>
+                                    <p class="text-gray-600 mb-3">Tomato sauce, mozzarella, prosciutto, and arugula</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$18.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Courses -->
+                <div class="menu-section mt-16" id="mains-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+                        <i class="fas fa-drumstick-bite text-yellow-500 mr-3"></i>
+                        Main Courses
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Item 1 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="mains">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Osso Buco</h3>
+                                    <p class="text-gray-600 mb-3">Braised veal shanks with gremolata and risotto alla milanese</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$28.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="mains">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Saltimbocca alla Romana</h3>
+                                    <p class="text-gray-600 mb-3">Veal scallopini with prosciutto and sage in white wine sauce</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$26.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="mains">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Branzino al Forno</h3>
+                                    <p class="text-gray-600 mb-3">Whole roasted Mediterranean sea bass with herbs and lemon</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$32.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="mains">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Pollo alla Parmigiana</h3>
+                                    <p class="text-gray-600 mb-3">Chicken breast topped with tomato sauce and melted mozzarella</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$22.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desserts -->
+                <div class="menu-section mt-16" id="desserts-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+                        <i class="fas fa-ice-cream text-yellow-500 mr-3"></i>
+                        Dolci - Desserts
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Item 1 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="desserts">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Tiramisu</h3>
+                                    <p class="text-gray-600 mb-3">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$8.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="desserts">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Panna Cotta</h3>
+                                    <p class="text-gray-600 mb-3">Creamy custard with berry coulis</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$7.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="desserts">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Cannoli Siciliani</h3>
+                                    <p class="text-gray-600 mb-3">Crispy pastry tubes filled with sweet ricotta cream</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$9.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="desserts">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Affogato</h3>
+                                    <p class="text-gray-600 mb-3">Vanilla gelato "drowned" in a shot of hot espresso</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$6.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drinks -->
+                <div class="menu-section mt-16" id="drinks-section">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+                        <i class="fas fa-glass-martini-alt text-yellow-500 mr-3"></i>
+                        Beverages
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Item 1 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="drinks">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Italian Wines</h3>
+                                    <p class="text-gray-600 mb-3">Selection of fine Italian reds, whites, and sparkling wines</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$8-15</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="drinks">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Limoncello Spritz</h3>
+                                    <p class="text-gray-600 mb-3">Limoncello, prosecco, and soda with a lemon twist</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$10.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="drinks">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">Espresso / Cappuccino</h3>
+                                    <p class="text-gray-600 mb-3">Authentic Italian coffee served hot</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$3.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 4 -->
+                        <div class="menu-item bg-white p-6 rounded-lg shadow-md transition duration-300" data-category="drinks">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1">San Pellegrino</h3>
+                                    <p class="text-gray-600 mb-3">Sparkling mineral water imported from Italy</p>
+                                </div>
+                                <span class="text-yellow-500 font-bold text-lg">$4.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-utensils text-yellow-500 mr-2"></i>
+                        Bella Cafe
+                    </h3>
+                    <p class="text-gray-400">Authentic Italian cuisine served with passion since 2005. We bring the flavors of Italy to your table.</p>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-yellow-500 mr-3"></i>
+                            123 Pasta Street, Foodville
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-yellow-500 mr-3"></i>
+                            (555) 123-4567
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-yellow-500 mr-3"></i>
+                            info@bellacafe.com
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Hours -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Opening Hours</h3>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between">
+                            <span>Monday - Thursday</span>
+                            <span>11am - 10pm</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Friday - Saturday</span>
+                            <span>11am - 11pm</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>10am - 9pm</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Social -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-700 hover:bg-yellow-500 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-yellow-500 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-yellow-500 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-yellow-500 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-yelp"></i>
+                        </a>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mt-6 mb-4">Newsletter</h3>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-full focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-r-full">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Bella Cafe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId + '-page').classList.remove('hidden');
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Menu category filtering
+        document.querySelectorAll('.menu-category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active button
+                document.querySelectorAll('.menu-category-btn').forEach(btn => {
+                    btn.classList.remove('bg-yellow-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'hover:bg-gray-300');
+                });
+                
+                this.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                this.classList.add('bg-yellow-500', 'text-white');
+                
+                // Show all items if "All" is selected
+                if (category === 'all') {
+                    document.querySelectorAll('.menu-item').forEach(item => {
+                        item.style.display = 'block';
+                    });
+                    return;
+                }
+                
+                // Filter items by category
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    if (item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Scroll to the section
+                if (category !== 'all') {
+                    const section = document.getElementById(category + '-section');
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Initialize - show home page
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
